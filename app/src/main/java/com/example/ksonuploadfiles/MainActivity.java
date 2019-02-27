@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 //            for (File file : files) {
 //                //多图的文件对象
 //            }
+            //============多文件上传第一种======================//
             //普通业务参数
            Map<String,RequestBody> params = new HashMap<>();
             RequestBody pidBody = RequestBody.create(MediaType.parse("text/plain"),"23");
@@ -160,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-            //上传文件第三种
+            //============多文件上传第二种======================//
 
             Map<String,RequestBody> params2 = new HashMap<>();
             params.put("commodityId",RequestBody.create(MediaType.parse("multipart/form-data"),"23"));
