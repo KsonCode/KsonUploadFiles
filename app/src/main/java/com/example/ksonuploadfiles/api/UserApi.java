@@ -20,6 +20,10 @@ public interface UserApi {
     @Multipart
     Observable<UploadInfo> upload(@HeaderMap Map<String,String> headerParams, @Part MultipartBody.Part f);
 
+    @POST("small/user/verify/v1/modifyHeadPic")
+    @Multipart
+    Observable<UploadInfo> upload2(@HeaderMap Map<String,String> headerParams,@Part MultipartBody.Part nickname, @Part MultipartBody.Part f);
+
 
     /**
      * 发布圈子
@@ -31,7 +35,17 @@ public interface UserApi {
     @Multipart
     Observable<UploadInfo> putMessage(@HeaderMap Map<String,String> headerMap, @PartMap Map<String,RequestBody> params, @Part List<MultipartBody.Part> images);
 
- /**
+    /**
+     * 发布圈子
+     * @param headerMap
+     * @param images
+     * @return
+     */
+    @POST
+    @Multipart
+    Observable<UploadInfo> putMessage3(@HeaderMap Map<String,String> headerMap, @PartMap List<MultipartBody.Part> params, @Part List<MultipartBody.Part> images);
+
+    /**
      * 发布圈子
      * @param headerMap
      * @return

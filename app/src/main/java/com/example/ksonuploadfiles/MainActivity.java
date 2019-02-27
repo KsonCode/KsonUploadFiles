@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         headerParams.put("userId","159");
         headerParams.put("sessionId","1551240158409159");
 
+        MultipartBody.Part nikeName = MultipartBody.Part.createFormData("nikeName","kson");
+
         //判断sd卡是否挂载
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){//挂载状态
             String path = Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"wdmallimgs/hi.jpg";
@@ -64,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
             if (file!=null&&file.exists()){
 
                 //图片请求体
-                RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);//只能上传图片
+//                RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file);//所有文件都能上传1
+//                RequestBody requestBody = RequestBody.create(MediaType.parse("application/octet-stream"),file);//所有文件都能上传2
                 //对图片请求体对象，封装成multipart对象，文件表单对象
                 MultipartBody.Part filePart = MultipartBody.Part.createFormData("image",file.getName(),requestBody);
 
@@ -90,9 +94,15 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
+                userApi.upload2(headerParams,nikeName,filePart);
+
+
+
             }else{
                 ToastUtils.showShort("请选择文件");
             }
+
+
         }
     }
 
